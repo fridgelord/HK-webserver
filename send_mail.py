@@ -71,11 +71,7 @@ def send_mail_read_credentials(
     password
     """
     with open(credentials_file) as fp:
-        data = fp.readlines()
-    smtp_port = data[0]
-    smtp_server = data[1]
-    sender_email = data[2]
-    password = data[3]
+        smtp_server, smtp_port, sender_email, password = fp.read().splitlines()
 
     send_mail(
         sender_email=sender_email,
@@ -83,7 +79,7 @@ def send_mail_read_credentials(
         subject=subject,
         body=body,
         smtp_server=smtp_server,
-        smtp_port=smtp_port,
+        smtp_port=int(smtp_port),
         password=password,
         attachments=attachments,
     )

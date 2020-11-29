@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Hankook Tire Polska</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Hankook Tire Polska Portal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#Online Prices">Online Prices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Returns">Returns</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row "> 
+      <div id="Online Prices" class="col-lg-6" style=background-color:orange;">
+        <br>
+        <h1 style="text-align:center">Online Prices</h1>
+        <br>
+        <form action="/prices" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="email" class="control-label font-weight-bold">Email:</label>
+            <input type="email" id="email" class="form-control" placeholder="Results will be sent to this email" name="email_prices" autocomplete="on" /><span style="color:red">{{email_error_prices or ''}}</span></input><br><br>
+            <label for="upload" class="control-label font-weight-bold">Upload file with sizes (<a href="https://github.com/fridgelord/tyre-price-scraping/raw/master/data/input/sizes.xlsx">template</a>, 
+              fill in as explained in <a href="https://github.com/fridgelord/tyre-price-scraping#usage" target="_blank" rel="noopener noreferrer">this table</a>):</label><br>
+            <input type="file" id="upload" class="form-control-file" name="upload_prices" accept=".xlsx" /><span style="color:red"> {{file_error_prices or ''}}</span></input>
+          </div>
+          <br>
+          <div class="form group">
+            <label for"selection" class="control-label font-weight-bold">Select source(s):</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="platformaopon" name="platformaopon" />
+              <label for="platformaopon">Platforma Opon</label><br>
+              <input class="form-check-input" type="checkbox" id="oponeo" name="oponeo" />
+              <label for="oponeo">Oponeo</label><br>
+              <input class="form-check-input" type="checkbox" id="sklepopon" name="sklepopon" />
+              <label for="sklepopon">SklepOpon</label><br>
+              <input class="form-check-input" type="checkbox" id="intercars" name="intercars" />
+              <label for="intercars">Inter Cars</label>
+            </div>
+          </div>
+          <div class="text-center">
+            <br>
+            <input type="submit" value="Download data" /><div class=font-weight-bold>{{sent_prices or ''}}</div>
+          </div>
+        </form>
+        <br>
+      </div>
+      <div id="Returns" class="col-lg-6" style=background-color:lightgrey;">
+        <br>
+        <h1 style="text-align:center">Returns - under construction</h1>
+        <br>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="email" class="control-label font-weight-bold">Email:</label>
+            <input type="email" id="email" class="form-control" placeholder="Results will be sent_prices to this email" name="email" autocomplete="on" /><span style="color:red"> {{email_error_returns or ''}}</span></input><br><br>
+            <label for="upload" class="control-label font-weight-bold">Upload file with returned tyres</label><br>
+            <input type="file" id="upload" class="form-control-file" name="upload" accept=".xlsx" /><span style="color:red"> {{file_error_returns or ''}}</span></input>
+          </div>
+          <br>
+          <div class="text-center">
+            <input type="submit" value="Under construction" /><div class=font-weight-bold>sent_prices!</div>
+          </div>
+        </form>
+        <br>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.slim.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
