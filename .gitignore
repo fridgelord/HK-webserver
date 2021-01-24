@@ -2,3 +2,4 @@ tyre_price_scraping/
 __pycache__/
 credentials*
 server*
+returns/
