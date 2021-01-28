@@ -100,6 +100,7 @@ def prices():
 
 @route("/returns", method="POST")
 def returns():
+    SALES_PATH_INFO = "sales_path.txt"
     email = request.forms.get("email_returns")
     if not email:
         error_msg = "Please enter email"
@@ -134,9 +135,12 @@ def returns():
     if os.path.exists(parsed_output):
         os.remove(parsed_output)
 
+    with open(SALES_PATH_INFO) as fp:
+        sales_path = fp.read().splitlines()[0]
+    print(sales_path)
     try:
         returns_module.main(
-            sales_input_path="./returns/sprzedaz.xlsx",
+            sales_input_path=sales_path,
             returns_input_path=input_file,
             client=customer,
             is_client_soldToCur=is_client_soldToCur,

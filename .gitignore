@@ -3,3 +3,4 @@ __pycache__/
 credentials*
 server*
 returns/
+sales_path.txt
