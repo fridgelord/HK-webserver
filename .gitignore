@@ -1,4 +1,5 @@
 tyre_price_scraping/
+log.txt
 __pycache__/
 credentials*
 server*

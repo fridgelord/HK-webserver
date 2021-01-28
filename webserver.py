@@ -1,12 +1,20 @@
 import os
 from bottle import route, request, static_file, run, template
 from getpass import getpass
+import logging
 
 import send_mail
 from tyre_price_scraping.modules import __main__ as price_scraping
 import returns.returns as returns_module
 
 SERVER_INFO_FILE = "server.txt"
+logging.basicConfig(
+    format="%(asctime)s - %(levelname)s - %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M",
+)
+logger = logging.getLogger("webserver")
+fileHandler = logging.FileHandler("log.txt")
+logger.addHandler(fileHandler)
 
 def get_default_sources():
     return price_scraping.PriceScraper().DEFAULT_SOURCES
@@ -88,6 +96,7 @@ def prices():
         collect(input_file, sources, output_file)
     except:
         # ugly, but to keep server running
+        logger.exception("Problem with prices")
         return template_wrapper("index", sent_prices="Something went wrong, please try again")
     send_mail.send_mail_read_credentials(
         receiver_email=email,
@@ -137,7 +146,6 @@ def returns():
 
     with open(SALES_PATH_INFO) as fp:
         sales_path = fp.read().splitlines()[0]
-    print(sales_path)
     try:
         returns_module.main(
             sales_input_path=sales_path,
@@ -149,6 +157,7 @@ def returns():
         )
     except:
         # ugly, but to keep server running
+        logger.exception("Problem with returns")
         return template_wrapper("index", sent_returns="Something went wrong, please try again")
 
     send_mail.send_mail_read_credentials(
