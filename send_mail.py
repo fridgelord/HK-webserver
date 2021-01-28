@@ -40,7 +40,7 @@ def send_mail(
     text = message.as_string()
 
     context = ssl.create_default_context()
-    if smtp_port == 456:
+    if smtp_port == 465:
         with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, text)
