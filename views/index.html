@@ -76,18 +76,34 @@
       </div>
       <div id="Returns" class="col-lg-6" style=background-color:lightgrey;">
         <br>
-        <h1 style="text-align:center">Returns - under construction</h1>
+        <h1 style="text-align:center">Returns</h1>
         <br>
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <form action="/returns" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="email" class="control-label font-weight-bold">Email:</label>
-            <input type="email" id="email" class="form-control" placeholder="Results will be sent_prices to this email" name="email" autocomplete="on" /><span style="color:red"> {{email_error_returns or ''}}</span></input><br><br>
-            <label for="upload" class="control-label font-weight-bold">Upload file with returned tyres</label><br>
-            <input type="file" id="upload" class="form-control-file" name="upload" accept=".xlsx" /><span style="color:red"> {{file_error_returns or ''}}</span></input>
+            <input type="email" id="email" class="form-control" placeholder="Results will be sent to this email" name="email_returns" autocomplete="on" /><span style="color:red"> {{email_error_returns or ''}}</span></input><br><br>
+            <label for="upload" class="control-label font-weight-bold">Upload file with returned tyres (<a href="https://github.com/fridgelord/HK-returns/raw/master/data/input/return_sample.xlsx">template</a>)</label><br>
+            <input type="file" id="upload" class="form-control-file" name="upload_returns" accept=".xlsx,.csv" /><span style="color:red"> {{file_error_returns or ''}}</span></input><br>
+            <label for="customer_returns" class="control-label font-weight-bold">Customer number:</label>
+            <input id="customer_returns" class="form-control" placeholder="Sold To party or Sold To current" name="customer_returns" autocomplete="on" /><span style="color:red"> {{customer_error_returns or ''}}</span></input><br>
+            <label for"selection" class="control-label font-weight-bold">Customer type:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="customerType" id="soldToParty" value="soldToParty" checked>
+              <!-- <label class="form-check-label" for="soldToParty"> -->
+                Sold To party
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="customerType" id="soldToCurrent" value="soldToCurrent">
+              <!-- <label class="form-check-label" for="soldToCurrent"> -->
+                Sold To current
+              </label>
+            </div>
+
           </div>
           <br>
           <div class="text-center">
-            <input type="submit" value="Under construction" /><div class=font-weight-bold>sent_prices!</div>
+            <input type="submit" value="Calculate return" /><div class=font-weight-bold>{{sent_returns or ''}}</div>
           </div>
         </form>
         <br>
