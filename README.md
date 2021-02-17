@@ -1,9 +1,9 @@
 # Internal web server to interface with Python scripts
-Web server is run on a local network to enable easy access to Python scripts:
+Web server that is run on a local network to enable easy access to Python scripts:
 * [Tyre Price Scraping](https://github.com/fridgelord/tyre-price-scraping)
 * [Returns](https://github.com/fridgelord/HK-returns)
 ## Setting up
-Close this repository and in root insert two directories:
+Clone this repository and in root insert two directories:
 * `tyre_price_scraping`
 * `returns`
 
